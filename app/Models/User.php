@@ -41,4 +41,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'user_roles');
+    }
+
+    public function assignRole($roleName)
+    {
+        $role = Role::where('name', $roleName)->first();
+        if ($role) {
+            $this->roles()->attach($role);
+        } else {
+            throw new \Exception("Role '{$roleName}' does not exist.");
+        }
+    }
+
+    public function hasPermission($permissionName)
+    {
+        foreach ($this->roles as $role) {
+            if ($role->permissions->contains('name', $permissionName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
