@@ -4,6 +4,7 @@ use Laravel\Passport\Http\Controllers\AccessTokenController;
 use Laravel\Passport\Http\Controllers\AuthorizationController;
 use Laravel\Passport\Http\Controllers\TransientTokenController;
 use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -33,4 +34,10 @@ Route::middleware('auth:api')->group(function () {
 
 Route::middleware('auth:api')->get('user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::middleware(['auth:api', 'permission:create-posts'])->group(function () {
+// Route::middleware(['auth:api'])->group(function () {
+    Route::post('/add-user', [UserController::class, 'store']);
 });

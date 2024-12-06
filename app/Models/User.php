@@ -42,11 +42,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    
+    //User Roles Relationship
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'user_roles');
     }
 
+    //User Permissions Relationship
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'user_permissions');
+    }
+
+
+    //Roles and Permissions
     public function assignRole($roleName)
     {
         $role = Role::where('name', $roleName)->first();
@@ -66,4 +76,15 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function hasUserPermission($permissionName)
+    {
+        foreach ($this->permissions as $permission) {
+            if ($permission->name == $permissionName) {
+                return true;
+            }
+        }
+        return false;
+    }
+    //End Roles and Permissions
 }
