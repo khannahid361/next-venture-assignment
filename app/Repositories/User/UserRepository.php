@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories\User;
 
 use App\Models\User;
@@ -23,14 +24,17 @@ class UserRepository implements UserRepositoryInterface
             'password' => bcrypt($data['password']),
         ]);
     }
-    
+
 
     public function updateUser($id, array $data)
     {
-        $data['password'] = bcrypt($data['password']);
         $user = User::find($id);
         if ($user) {
-            $user->update($data);
+            $user->update([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
             return $user;
         }
         return null;

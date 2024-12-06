@@ -32,12 +32,26 @@ Route::middleware('auth:api')->group(function () {
     Route::get('logout', [RegisterController::class, 'logout']);
 });
 
-Route::middleware('auth:api')->get('user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware(['auth:api'])->group(function () {
+    // Routes that require 'permission:create-user'
+    Route::middleware(['permission:create-user'])->group(function () {
+        Route::post('add-user', [UserController::class, 'store']);
+    });
 
+    // Routes that require 'permission:view-user'
+    Route::middleware(['permission:view-user-list'])->group(function () {
+        Route::get('all-users', [UserController::class, 'index']);
+    });
 
-Route::middleware(['auth:api', 'permission:create-posts'])->group(function () {
-// Route::middleware(['auth:api'])->group(function () {
-    Route::post('/add-user', [UserController::class, 'store']);
+    Route::middleware(['permission:view-user'])->group(function () {
+        Route::get('user/{id}', [UserController::class, 'show']);
+    });
+
+    Route::middleware(['permission:edit-user'])->group(function () {
+        Route::put('edit-user/{id}', [UserController::class, 'update']);
+    });
+
+    Route::middleware(['permission:delete-user'])->group(function () {
+        Route::get('delete-user/{id}', [UserController::class, 'destroy']);
+    });
 });
