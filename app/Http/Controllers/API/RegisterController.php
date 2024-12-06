@@ -11,87 +11,57 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /**
 
-     * Register api
-
-     *
-
-     * @return \Illuminate\Http\Response
-
-     */
 
     public function register(Request $request)
-
     {
-
         $validator = Validator::make($request->all(), [
-
             'name' => 'required',
-
-            'email' => 'required|email',
-
-            'password' => 'required',
-
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
             'c_password' => 'required|same:password',
-
         ]);
 
-
-
         if ($validator->fails()) {
-
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
-
-
         $input = $request->all();
-
         $input['password'] = bcrypt($input['password']);
-
         $user = User::create($input);
 
-        $success['token'] =  $user->createToken('myapptoken')->accesToken;
+        // Correct the typo in accessToken
+        $success['token'] = $user->createToken('myapptoken')->accessToken;
+        $success['name'] = $user->name;
 
-        $success['name'] =  $user->name;
-
-
-
-        return $this->sendResponse($success, 'User register successfully.');
+        return $this->sendResponse($success, 'User registered successfully.');
     }
 
 
-
-    /**
- 
-     * Login api
- 
-     *
- 
-     * @return \Illuminate\Http\Response
- 
-     */
 
     public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
+{
+    // Validate the incoming request
+    $request->validate([
+        'email' => 'required|string|email',
+        'password' => 'required|string',
+    ]);
 
-        // Attempt to log in the user with provided credentials
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = Auth::user();
+    // Attempt to log in the user with provided credentials
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        $user = Auth::user();
 
-            $success['token'] = $user->createToken('myapptoken')->accessToken;
-            $success['name'] = $user->name;
+        // Generate a personal access token
+        $success['token'] = $user->createToken('myapptoken')->accessToken;
+        $success['name'] = $user->name;
 
-            return $this->sendResponse($success, 'User logged in successfully.');
-        } else {
-            return $this->sendError('Unauthorized', ['error' => 'Unauthorized']);
-        }
+        return $this->sendResponse($success, 'User logged in successfully.');
+    } else {
+        // Return an error response for invalid credentials
+        return $this->sendError('Unauthorized', ['error' => 'Invalid email or password'], 401);
     }
+}
+
 
     #create a logout method
 
@@ -100,7 +70,7 @@ class RegisterController extends Controller
         // Get the authenticated user
         $token = $request->user()->token();
         $token->revoke();
-    
+
         $response = 'You have been succesfully logged out!';
         return response($response, 200);
     }
@@ -126,17 +96,6 @@ class RegisterController extends Controller
         return response()->json($response, 200);
     }
 
-
-
-    /**
-
-     * return error response.
-
-     *
-
-     * @return \Illuminate\Http\Response
-
-     */
 
     public function sendError($error, $errorMessages = [], $code = 404)
 
