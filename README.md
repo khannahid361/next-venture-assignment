@@ -65,9 +65,9 @@ DB_PASSWORD=your_database_password
 php artisan key:generate
 ```
 ### 5. Run Migrations
-You Can Run Migration From **Api Collection** . Send **Response** to **Migration Request** inside the **Configuration Folder** of **Api Collection**. 
+You Can Run Migration From **Api Collection** . Send **Response** to **Migration Request** inside the **Configuration Folder** of **Api Collection**. You Have to start server for that. 
 
-Or
+Or you can generate by running this code
 ```bash
 php artisan migrate
 
