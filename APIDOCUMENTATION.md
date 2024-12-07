@@ -45,24 +45,82 @@ This Folder contains User CRUD Requests
 ---
 Add User with **name** , **email** and **password** <br>
 
+
 #### 3.2 All User List
 ---
 View All User <br>
 
 #### 3.3 Single User Info View
 ---
-Add User with **name** , **email** and **password** <br>
+Get User info from **ID*** <br>
 
-#### 3.4 All User List
+#### 3.4 Edit User Info
 ---
-Add User with **name** , **email** and **password** <br>
+Edit User with **ID** in **parameter** and update **name** , **email** and **password** <br>
 
-#### 3.5 All User List
+#### 3.5 Delete User
 ---
-Add User with **name** , **email** and **password** <br>
+Delete User with **ID** <br>
 
 ### 4. User Roles
+---
+This Folder Contains User Role info and Assign Role
+
+#### 4.1 Get All Roles
+---
+View All Roles <br>
+
+#### 4.2 View Role Wise Permission
+---
+View All Permissions of A Role by **ID** <br>
+
+#### 4.3 User Current Roles
+---
+View Users Roles by **ID**. Also Shows **Multiple Roles** if User Has <br>
+
+#### 4.4 Assign User Role
+---
+Assign roles to user via **user_id** and **role_id** <br>
 
 ### 5. User Permissions
+---
+This Folder Contains User Permission info and Assign Permissions without assigning any role
+#### 5.1 Get All Permission
+---
+View All Permission <br>
+
+#### 5.2 Assign User Permission
+---
+Assign Permission to user with **user_id** and **permission_id** <br>
+
+#### 5.3 Get User Permission
+---
+View User All Permission assigned without role <br>
 
 ### 6. Blog Post
+---
+This Folder Contains BlogPost Related Request
+
+#### 6.1 Add Blog Post
+---
+Authorized User can create blog with **title** and **body**. Authors id is saved automatically for logged in <br>
+
+#### 6.2 View All Blog Post
+---
+Authorized User can view All blogs with **Author(user)** <br>
+
+#### 6.3 View Single Blog
+---
+Authorized User Can View Blogs By **Blog Id** <br>
+
+#### 6.4 Edit Blog Post
+---
+Authorized User can Edit Blogs **title** and **body** <br>
+
+#### 6.5 Delete Blog
+---
+Authorized User can delete post by **ID** <br>
+
+#### 6.6 Get User All Post
+---
+Authenticated User can see all his posts<br>
