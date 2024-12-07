@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\BlogPostController;
 use Laravel\Passport\Http\Controllers\AccessTokenController;
 use Laravel\Passport\Http\Controllers\AuthorizationController;
 use Laravel\Passport\Http\Controllers\TransientTokenController;
@@ -67,10 +68,30 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('role-permission/{id}', [UserRoleController::class, 'getRoleWisePermission']);
         Route::get('user-roles/{id}', [UserRoleController::class, 'userRoles']);
     });
+
     Route::middleware(['permission:view-permission-list'])->group(function () {
         Route::get('permission-list', [UserPermissionController::class, 'index']);
     });
+
     Route::middleware(['permission:view-permission'])->group(function () {
         Route::get('user-permissions/{id}', [UserPermissionController::class, 'getPermissionByUserId']);
+    });
+
+    Route::middleware(['permission:create-posts'])->group(function () {
+        Route::post('create-post', [BlogPostController::class, 'store']);
+    });
+
+    Route::middleware(['permission:edit-posts'])->group(function () {
+        Route::put('update-blog-post/{id}', [BlogPostController::class, 'update']);
+    });
+
+    Route::middleware(['permission:delete-posts'])->group(function () {
+        Route::get('delete-post/{id}', [BlogPostController::class, 'destroy']);
+    });
+
+    Route::middleware(['permission:view-posts'])->group(function () {
+        Route::get('all-posts', [BlogPostController::class, 'index']);
+        Route::get('post/{id}', [BlogPostController::class, 'show']);
+        Route::get('my-posts', [BlogPostController::class, 'userPosts']);
     });
 });
