@@ -45,6 +45,8 @@ cd <repository-folder>
 ### 2. Install Dependencies
 ```bash
 composer install
+or
+composer install --ignore-platform-reqs
 ```
 ### 3. Configure Environment
 Copy .env.example to .env and update the database 
