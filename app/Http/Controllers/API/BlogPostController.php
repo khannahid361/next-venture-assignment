@@ -30,7 +30,6 @@ class BlogPostController extends Controller
             DB::commit();
             $output = [
                 'status' => 'success',
-                'message' => 'Post created successfully',
                 'data' => $blogPost
             ];
         } catch (\Exception $e) {
@@ -61,7 +60,6 @@ class BlogPostController extends Controller
             DB::commit();
             $output = [
                 'status' => 'success',
-                'message' => 'Post Updated successfully',
                 'data' => $blogPost
             ];
         } catch (\Exception $e) {
@@ -82,7 +80,6 @@ class BlogPostController extends Controller
             DB::commit();
             $output = [
                 'status' => 'success',
-                'message' => 'Post Deleted successfully',
                 'data' => $blogPost
             ];
         } catch (\Exception $e) {

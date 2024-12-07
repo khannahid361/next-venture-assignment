@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserPermissionFormRequest;
 use App\Models\User;
 use App\Repositories\Permission\UserPermissionRepositoryInterface;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ class UserPermissionController extends Controller
         return $this->userPermissionRepository->getPermissionByUserId($id);
     }
 
-    public function assignUserPermission(Request $request)
+    public function assignUserPermission(UserPermissionFormRequest $request)
     {
         DB::beginTransaction();
         try {
@@ -34,7 +35,6 @@ class UserPermissionController extends Controller
             DB::commit();
             $output = [
                 'status' => 'success',
-                'message' => 'User permission assigned successfully',
                 'data' => $result
             ];
         } catch (\Exception $e) {

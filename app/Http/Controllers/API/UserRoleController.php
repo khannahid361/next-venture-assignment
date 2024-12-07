@@ -35,7 +35,6 @@ class UserRoleController extends Controller
             DB::commit();
             $output = [
                 'status' => 'success',
-                'message' => 'User role assigned successfully',
                 'data' => $result
             ];
         } catch (\Exception $e) {

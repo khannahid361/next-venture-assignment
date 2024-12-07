@@ -38,7 +38,6 @@ class UserController extends Controller
             DB::commit();
             $output = [
                 'status' => 'success',
-                'message' => 'User created successfully',
                 'data' => $user
             ];
         } catch (\Exception $e) {
@@ -59,7 +58,6 @@ class UserController extends Controller
             DB::commit();
             $output = [
                 'status' => 'success',
-                'message' => 'User updated successfully',
                 'data' => $user
             ];
         } catch (\Exception $e) {
