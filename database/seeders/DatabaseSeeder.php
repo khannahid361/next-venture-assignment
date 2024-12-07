@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $permissions = ['create-posts', 'edit-posts', 'delete-posts', 'view-posts','create-user', 'edit-user', 'delete-user', 'view-user', 'view-user-list', 'view-role', 'view-role-list'];
+        $permissions = ['create-posts', 'edit-posts', 'delete-posts', 'view-posts','create-user', 'edit-user', 'delete-user', 'view-user', 'view-user-list', 'view-role', 'view-role-list','view-permission', 'view-permission-list'];
 
         //Adding permissions
         foreach ($permissions as $permission) {

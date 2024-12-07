@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Permission\UserPermissionRepository;
+use App\Repositories\Permission\UserPermissionRepositoryInterface;
 use App\Repositories\Role\UserRoleRepository;
 use App\Repositories\Role\UserRoleRepositoryInterface;
 use App\Repositories\User\UserRepository;
@@ -15,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(UserRoleRepositoryInterface::class, UserRoleRepository::class);
+        $this->app->bind(UserPermissionRepositoryInterface::class, UserPermissionRepository::class);
     }
 
     public function boot(): void

@@ -5,6 +5,7 @@ use Laravel\Passport\Http\Controllers\AuthorizationController;
 use Laravel\Passport\Http\Controllers\TransientTokenController;
 use App\Http\Controllers\API\RegisterController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\UserPermissionController;
 use App\Http\Controllers\API\UserRoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -38,6 +39,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::middleware(['permission:create-user'])->group(function () {
         Route::post('add-user', [UserController::class, 'store']);
         Route::post('add-user-role', [UserRoleController::class, 'assignUserRole']);
+        Route::post('add-user-permission', [UserPermissionController::class, 'assignUserPermission']);
     });
 
     // Routes that require 'permission:view-user'
@@ -60,9 +62,15 @@ Route::middleware(['auth:api'])->group(function () {
     Route::middleware(['permission:view-role-list'])->group(function () {
         Route::get('role-list', [UserRoleController::class, 'index']);
     });
-
+    
     Route::middleware(['permission:view-role'])->group(function () {
         Route::get('role-permission/{id}', [UserRoleController::class, 'getRoleWisePermission']);
         Route::get('user-roles/{id}', [UserRoleController::class, 'userRoles']);
+    });
+    Route::middleware(['permission:view-permission-list'])->group(function () {
+        Route::get('permission-list', [UserPermissionController::class, 'index']);
+    });
+    Route::middleware(['permission:view-permission'])->group(function () {
+        Route::get('user-permissions/{id}', [UserPermissionController::class, 'getPermissionByUserId']);
     });
 });
