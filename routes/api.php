@@ -22,6 +22,15 @@ Route::get('run-migrations', function () {
     }
 })->name('run.migrations');
 
+Route::get('run-all-seeders', function () {
+    if (app()->environment('production')) {
+        abort(403, 'Seeders cannot be executed in production!');
+    }
+    
+    Artisan::call('db:seed');
+    return response()->json(['message' => 'All seeders executed successfully!']);
+});
+
 Route::group(['prefix' => 'api'], function () {
     Route::post('/token', [AccessTokenController::class, 'issueToken'])->name('passport.token');
     Route::post('/token/refresh', [TransientTokenController::class, 'refresh'])->name('passport.token.refresh');
