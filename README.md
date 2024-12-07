@@ -78,7 +78,7 @@ php artisan passport:install
 ```
 
 ### 7. Seed the Database
-Seed roles, permissions, and default admin user. You Can Seed Them From **Api Collection** . Send **Response** to **DatabaseSeeder** inside the **Configuration Folder** of **Api Collection**. 
+Must Seed roles, permissions, and default admin user. You Can Seed Them From **Api Collection** . Send **Response** to **DatabaseSeeder** inside the **Configuration Folder** of **Api Collection**. 
 
 Or
 ```bash
