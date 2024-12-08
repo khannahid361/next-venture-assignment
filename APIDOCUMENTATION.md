@@ -20,7 +20,7 @@ You can Run Migration Using this Request
 ---
 You can Run Database Seeder Using this Request 
 <br>
-![Example](public/api-images/Configuration/seeder.png "Seeder Request")
+![Example](public/api-images/Configuration/Seeder.png "Seeder Request")
 
 ### 2. Authentication
 ---
