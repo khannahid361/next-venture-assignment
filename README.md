@@ -90,5 +90,11 @@ php artisan db:seed
 php artisan serve
 ```
 
+## API Collection
+You Will Get The Collection and Environment Variable in the **apicollection** Folder
+
+## API Documentation 
+You will find the Documentation in the **APIDOCUMENTATION.md** file
+
 ## License
 This project is licensed under the MIT License.
