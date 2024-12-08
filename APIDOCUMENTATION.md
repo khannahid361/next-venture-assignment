@@ -14,7 +14,7 @@ Import the collection nad Environment Variable from the **apicollection** Folder
 ---
 You can Run Migration Using this Request
 <br>
-![Example](public\api-images\Configuration\migrationRequest.png "Migration Request")
+![Example](public/api-images/Configuration/migrationRequest.png "Migration Request")
 
 #### 1.2 Database Seeder
 ---
