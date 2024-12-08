@@ -29,7 +29,6 @@ This project provides a RESTful API to manage users, roles, and permissions. The
 
 ## Technologies
 - Laravel 10+
-- Spatie Laravel Permission
 - Laravel Passport
 - PHP 8.1+
 
@@ -89,3 +88,6 @@ php artisan db:seed
 ```bash
 php artisan serve
 ```
+
+## License
+This project is licensed under the MIT License.
