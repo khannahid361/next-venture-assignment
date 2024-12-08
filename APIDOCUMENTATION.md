@@ -20,7 +20,7 @@ You can Run Migration Using this Request
 ---
 You can Run Database Seeder Using this Request 
 <br>
-![Example](public\api-images\Configuration\seeder.png "Seeder Request")
+![Example](public/api-images/Configuration/seeder.png "Seeder Request")
 
 ### 2. Authentication
 ---
@@ -29,14 +29,14 @@ This folder contains User **Login** and **Registration**
 #### 2.1 Login
 ---
 Login with **email** and **password** <br>
-![Example](public\api-images\Authentication\loginRequest.png "login Request")
-![Example](public\api-images\Authentication\loginResponse.png "login Response")
+![Example](public/api-images/Authentication/loginRequest.png "login Request")
+![Example](public/api-images/Authentication/loginResponse.png "login Response")
 
 #### 2.2 Registration
 ---
 Register with **name** , **email** , **password** and **c_password** <br>
-![Example](public\api-images\Authentication\registrationRequest.png "login Request")
-![Example](public\api-images\Authentication\registrationresponse.png "login Response")
+![Example](public/api-images/Authentication/registrationRequest.png "login Request")
+![Example](public/api-images/Authentication/registrationresponse.png "login Response")
 
 ### 3. User Requests
 ---
