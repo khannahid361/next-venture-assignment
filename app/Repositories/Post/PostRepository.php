@@ -50,8 +50,8 @@ class PostRepository implements PostRepositoryInterface
         $blog = BlogPost::find($id);
         if ($blog) {
             $blog->delete();
-            return true;
+            return "Post deleted successfully";
         }
-        return false;
+        return 'Post not found';
     }
 }

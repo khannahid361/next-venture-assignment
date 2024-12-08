@@ -75,6 +75,7 @@ php artisan migrate
 ```bash
 php artisan passport:install
 ```
+Give Permission for migration
 
 ### 7. Seed the Database
 Must Seed roles, permissions, and default admin user. You Can Seed Them From **Api Collection** . Send **Response** to **DatabaseSeeder** inside the **Configuration Folder** of **Api Collection**. 
